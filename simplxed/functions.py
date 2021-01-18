@@ -40,3 +40,10 @@ def to_tableau(c: List[float], A: List[List[float]], b: List[float]) -> np.array
     t_sub = np.array(c, dtype=float)
     top_row = np.concatenate((t_sub, np.zeros((p+1))), axis=0)
     return np.insert(lower_rows, 0, top_row, axis=0)
+
+class LP:
+    def __init__(self, c, A, b):
+        if (not is_canonical(c,A,b)):
+            raise ValueError("Inputs do not adhere to canonical form")
+        else:
+            self.tab = to_tableau(c,A,b)

@@ -1,5 +1,7 @@
 from simplxed import functions
+from simplxed.functions import LP
 import numpy as np
+import pytest
 
 def test_is_canonical_true():
     c_1 = [-4, -3]
@@ -68,3 +70,26 @@ def test_to_tableau():
     assert (np.array_equal(functions.to_tableau(c_1, A_1, b_1), ctab_1) and
             np.array_equal(functions.to_tableau(c_2, A_2, b_2), ctab_2)
     )
+
+def test_lp_class_inst():
+    c_1 = [2, 3, 4]
+    A_1 = [
+         [3, 2, 1],
+         [2, 5, 3]
+        ]
+    b_1 = [10, 15]
+    ctab = np.array([
+        [1, 2, 3, 4, 0, 0,  0],
+        [0, 3, 2, 1, 1, 0, 10],
+        [0, 2, 5, 3, 0, 1, 15]
+    ], dtype=float)
+    c_2 = [2, 3, 4]
+    A_2 = [
+         [3, 2, 1],
+         [2, 5, 3]
+        ]
+    b_2 = [10, -15]
+    lp1 = LP(c_1,A_1,b_1)
+    assert(np.array_equal(lp1.tab,ctab))
+    with pytest.raises(ValueError):
+        lp2 = LP(c_2,A_2,b_2)
