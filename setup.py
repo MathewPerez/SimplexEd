@@ -7,8 +7,8 @@ setup(
     description='Educational Python library to demonstrate the Simplex Algorithm',
     author='Mathew Perez',
     license='Apache 2.0',
-    install_requires=[],
-    setup_requires=[‘pytest-runner’],
-    tests_require=[‘pytest==4.4.1’],
-    test_suite=’tests’,
+    install_requires=["numpy"],
+    setup_requires=["pytest-runner"],
+    tests_require=["pytest==4.4.1", "numpy"],
+    test_suite="tests",
 )
