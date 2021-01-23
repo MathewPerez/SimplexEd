@@ -46,7 +46,7 @@ def to_tableau(c: List[float], A: List[List[float]], b: List[float]) -> np.array
     return np.insert(lower_rows, 0, top_row, axis=0)
 
 class LP:
-    def __init__(self, c, A, b):
+    def __init__(self, c: List[float], A: List[List[float]], b: List[float]):
         if (not is_canonical(c,A,b)):
             raise ValueError("Inputs do not adhere to canonical form")
         else:
@@ -54,7 +54,9 @@ class LP:
             self.pcol = None
             self.prow = None
 
-    # Decode the tableau location dictionary into feasible solution
+    # Decode the current tableau into feasible solution
+    # Soultion returned is array of form :
+    # [ x_1, ... ,x_n, s_1, ... ,s_n, optimal_function_value ]
     def decode(self):
         n = self.tab.shape[1]-2
         solution = [None]*n
@@ -102,7 +104,7 @@ class LP:
         self.tab = pivoted_tab
 
     # Iteratively pivot until optimal solution found
-    def optimize(self, max_iter=10000):
+    def optimize(self, max_iter: int = 10000):
         counter = 1
         while ((np.count_nonzero(self.tab[0]<0) > 0) or (counter < max_iter)):
             self.getPivCol()
