@@ -106,7 +106,9 @@ class LP:
     # Iteratively pivot until optimal solution found
     def optimize(self, max_iter: int = 10000):
         counter = 1
-        while ((np.count_nonzero(self.tab[0]<0) > 0) or (counter < max_iter)):
+        while (counter < max_iter):
+            if (np.count_nonzero(self.tab[0]<0) == 0):
+                break
             self.getPivCol()
             self.getPivRow()
             self.pivot()
