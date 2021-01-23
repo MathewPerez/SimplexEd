@@ -25,3 +25,5 @@ lp = LP(c,A,b)
 lp.optimize()
 print(lp.decode())
 ```
+The solution will be an array of the form:
+[ x_1, … ,x_n, slackvar_1, … , slackvar_p, optimal_function_value ]
