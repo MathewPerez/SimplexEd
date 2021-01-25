@@ -1,6 +1,8 @@
 # SimplexEd
 Educational Python library to demonstrate the Simplex Algorithm
 
+Further details and documentation can be found [here](https://mathewperez.github.io/projects/SimplexEd.html).
+
 ## How to Use
 Let's say you have the following linear optimization problem:
 <br>
